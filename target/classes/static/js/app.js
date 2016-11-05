@@ -3,12 +3,14 @@ function registerValidate(value) {
     var lastNameInput = $("#lastNameInput").val();
     var phoneInput = $("#phoneInput").val();
     var newLoginInput = $("#newLoginInput").val();
-    var nawPassInput = $("#newPassInput").val();
+    var newPassInput = $("#newPassInput").val();
     var repeatPassInput = $("#repeatPassInput").val();
+    var licence = $("#licence").val();
 
     var regLetter = /^[A-ZĄĆĘŁŃÓŚŻŹ]{1}[a-ząćęłńóśżź]{1,50}$/;
-    var regLog = /^[A-Za-z0-9]{1,50}$/;
-    var regPhone = /^[0-9]{3}\-[0-9]{3}\-[0-9]{3}$/;
+    var regLog = /^\w{1,50}$/;
+    var regPhone = /^\d{3}-\d{3}-\d{3}$/;
+    var regLicence = /^[A-Z0-9]{1,50}$/;
 
     switch (value) {
         case 1:
@@ -49,11 +51,20 @@ function registerValidate(value) {
             break;
         case 5:
             // powtorzone haslo
-            if (!repeatPassInput.isEqual(nawPassInput)) {
-                $("#divrepeatpass").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            if (repeatPassInput === newPassInput) {
+                $("#divRepeatPass").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
             }
             else {
-                $("#divrepeatpass").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+                $("#divRepeatPass").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            break;
+        case 6:
+            // licencja
+            if (licence.match(regLicence)) {
+                $("#divLicence").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            else {
+                $("#divLicence").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
             }
             break;
     }
@@ -71,7 +82,6 @@ function horseValidate(value) {
 
     var regLetter = /^[A-ZĄĆĘŁŃÓŚŻŹ]{1}[a-ząćęłńóśżź]{1,50}$/;
     var regPassport = /^[A-Z0-9]{1,50}$/;
-    var regBornDate = /^[0-9]{2}\-[0-9]{2}\-[0-9]{4}$/;
 
     switch (value) {
         case 1:
@@ -129,21 +139,174 @@ function horseValidate(value) {
             }
             break;
         case 7:
-            // dataurodzenia
-            if (!bornDateInput.match(regBornDate)) {
-                $("#divBornDate").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
-            }
-            else {
-                $("#divBornDate").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
-            }
-            break;
-        case 8:
             // paszport
             if (!passportInput.match(regPassport)) {
                 $("#divPassport").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
             }
             else {
                 $("#divPassport").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+    }
+}
+
+function competitionValidate(value) {
+    var dateStart = $("#dateStart").val();
+    var dateEnd = $("#dateEnd").val();
+    var managerTrack = $("#managerTrack").val();
+    var manager = $("#manager").val();
+    var placeSize = $("#placeSize").val();
+    var warmUpSize = $("#warmUpSize").val();
+    var ground = $("#ground").val();
+    var price = $("#price").val();
+
+    var regLetter = /^[a-zA-ZĄĆĘŁŃÓŚŻŹąćęłńóśżź]{1,50}$/;
+    var regNumber = /^\d{1,3}$/;
+    var regSize = /^\d{2,3}x\d{2,3}$/;
+
+    switch (value) {
+        case 1:
+            // data
+            if (dateEnd < dateStart) {
+                $("#divDate").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divDate").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 2:
+            // gospodarz toru
+            if (!managerTrack.match(regLetter)) {
+                $("#divManagerTrack").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divManagerTrack").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 3:
+            // kierownik
+            if (!manager.match(regLetter)) {
+                $("#divManager").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divManager").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 4:
+            // plac konkursowy
+            if (!placeSize.match(regSize)) {
+                $("#divPlaceSize").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divPlaceSize").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 5:
+            // rozprezalnia
+            if (!warmUpSize.match(regSize)) {
+                $("#divWarmUp").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divWarmUp").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 6:
+            // podloze
+            if (!ground.match(regLetter)) {
+                $("#divGround").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divGround").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 7:
+            // wpisowe
+            if (!price.match(regNumber)) {
+                $("#divPrice").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divPrice").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+    }
+}
+
+function organizerValidate(value) {
+    var name = $("#name").val();
+    var city = $("#city").val();
+    var owner = $("#owner").val();
+    var nip = $("#nip").val();
+    var manager = $("#manager").val();
+    var sportClub = $("#sportClub").val();
+    var phone = $("#phone").val();
+
+    var regLetter = /^[A-ZĄĆĘŁŃÓŚŻŹ]{1}[a-ząćęłńóśżź]{1,50}$/;
+    var regClub = /^\w{1,50}$/;
+    var regPhone = /^0\d{2}-\d{3}-\d{2}-\d{2}$/;
+    var regNip = /^\d{3}-\d{3}-\d{2}-\d{2}$/;
+
+    switch (value) {
+        case 1:
+            // nazwa
+            if (!name.match(regLetter)) {
+                $("#divStableName").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divStableName").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 2:
+            // miejscowosc
+            if (!city.match(regLetter)) {
+                $("#divCity").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divCity").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 3:
+            // właściciel
+            if (!owner.match(regLetter)) {
+                $("#divOwner").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divOwner").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 4:
+            // NIP
+            if (!nip.match(regNip)) {
+                $("#divNip").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            else {
+                $("#divNip").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            break;
+        case 5:
+            // kierownik
+            if (manager.match(regLetter)) {
+                $("#divManager").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            else {
+                $("#divManager").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            break;
+        case 6:
+            // klub sportowy
+            if (sportClub.match(regClub)) {
+                $("#divSportClub").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            else {
+                $("#divSportClub").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
+            }
+            break;
+        case 7:
+            // telefon
+            if (phone.match(regPhone)) {
+                $("#divPhone").css("visibility", "hidden").css("height", "0px").css("margin", "0px").css("padding", "0px");
+            }
+            else {
+                $("#divPhone").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
             }
             break;
     }

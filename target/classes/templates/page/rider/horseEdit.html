@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="Shortcut icon" href="../../img/favicon.ico"  />
+    <title>Edycja danych konia | Cavalli</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../lib/bootstrap.js"></script>
+    <script type="text/javascript" src="../../lib/angular.js"></script>
+    <script type="text/javascript" src="../../lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="../../lib/jquery-ui-i18n.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../app/app.js"></script>
+    <script type="text/javascript" src="../../app/angApp.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#horseEdit")[0].reset();
+            $.datepicker.setDefaults($.datepicker.regional['pl']);
+            $('.datepicker').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
+
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+        <div class="active item "></div>
+        <div class="item "></div>
+        <div class="item "></div>
+        <div class="item "></div>
+    </div>
+</div>
+<div id="main">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Rozwiń nawigację</span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="mainPage.html"><img src="../../img/logo.png" class="logo"/></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a class="menu" href="horseRegister.html"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspRejestruj
+                        konia</a>
+                    </li>
+                    <li><a class="menu" href="horseEdit.html"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspEdytuj
+                        dane konia</a>
+                    </li>
+                    <li><a class="menu" href="horseDelete.html"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </i>&nbspWycofaj konia</a>
+                    </li>
+                    <li><a class="menu" href="riderEdit.html"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspEdytuj
+                        swoje dane</a>
+                    </li>
+                    <li><a class="menu" href="../../index.html"><i class="fa fa-unlock-alt"
+                                                                   aria-hidden="true"></i>&nbspWyloguj</a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control menu" placeholder="Szukaj...">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-3 col-sm-2 col-xs-1"></div>
+        <div class="col-md-4 col-sm-8 col-xs-10">
+            <h1 class="naglowek"><span class="label label-default">Edycja danych konia</span></h1>
+            <div class="panel panel-default" id="horsePanel">
+                <div class="panel-body">
+                    <form role="form" id="horseEdit">
+                        <div class="form-group">
+                            <label for="horseNameInput">Imię</label>&nbsp;
+                            <abbr title="Imię może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return horseValidate(1);" class="form-control"
+                                   id="horseNameInput"
+                                   placeholder="Wpisz imię">
+                            <div class="alert alert-danger" id="divHorseName" style="visibility: hidden">Niepoprawny
+                                format
+                                imienia
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="motherNameInput">Ojciec</label>&nbsp;
+                            <abbr title="Imię może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return horseValidate(2);" class="form-control"
+                                   id="motherNameInput"
+                                   placeholder="Wpisz imię">
+                            <div class="alert alert-danger" id="divMotherName" style="visibility: hidden">Niepoprawny
+                                format
+                                imienia
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherNameInput">Matka</label>&nbsp;
+                            <abbr title="Imię może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return horseValidate(3);" class="form-control"
+                                   id="fatherNameInput"
+                                   placeholder="Wpisz imię">
+                            <div class="alert alert-danger" id="divFatherName" style="visibility: hidden">Niepoprawny
+                                format
+                                imienia
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="breedInput">Rasa</label>&nbsp;
+                            <abbr title="Rasa może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return horseValidate(4);" class="form-control" id="breedInput"
+                                   placeholder="Wpisz rasę">
+                            <div class="alert alert-danger" id="divBreed" style="visibility: hidden">Niepoprawny format
+                                maści
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="countryInput">Kraj pochodzenia</label>&nbsp;
+                            <abbr title="Kraj może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return horseValidate(5);" class="form-control" id="countryInput"
+                                   placeholder="Wpisz kraj">
+                            <div class="alert alert-danger" id="divCountry" style="visibility: hidden">Niepoprawny
+                                format
+                                maści
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="colorInput">Maść</label>&nbsp;
+                            <abbr title="Maść może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return horseValidate(6);" class="form-control" id="colorInput"
+                                   placeholder="Wpisz maść">
+                            <div class="alert alert-danger" id="divColor" style="visibility: hidden">Niepoprawny format
+                                maści
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Data urodzenia</label>&nbsp;
+                            <abbr title="Wybierz datę za pomocą kalendarza"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <div class="input-group input-daterange">
+                                <input type="text" class="input-sm form-control datepicker" name="start"
+                                       id="dateStart"/>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-inverse"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspEdytuj
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

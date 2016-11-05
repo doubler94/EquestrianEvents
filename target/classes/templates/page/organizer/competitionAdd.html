@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp' xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="Shortcut icon" href="../../img/favicon.ico"  />
+    <title>Dodawanie zawodów | Cavalli</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../lib/bootstrap.js"></script>
+    <script type="text/javascript" src="../../lib/angular.js"></script>
+    <script type="text/javascript" src="../../lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="../../lib/jquery-ui-i18n.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../app/app.js"></script>
+    <script type="text/javascript" src="../../app/angApp.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#competition")[0].reset();
+            $.datepicker.setDefaults($.datepicker.regional['pl']);
+            $('.datepicker').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
+
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body ng-controller="Controller">
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+        <div class="active item "></div>
+        <div class="item "></div>
+        <div class="item "></div>
+        <div class="item "></div>
+    </div>
+</div>
+<div id="main">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Rozwiń nawigację</span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="mainPage.html"><img src="../../img/logo.png" class="logo"/></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a class="menu" href="competitionAdd.html"><i class="fa fa-plus"
+                                                                      aria-hidden="true"></i>&nbspDodaj nowe zawody</a>
+                    </li>
+                    <li><a class="menu" href="competitionDelete.html"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </i>&nbspUsuń zawody</a>
+                    </li>
+                    <li><a class="menu" href="competitionEdit.html"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspEdytuj
+                        dane</a>
+                    </li>
+                    <li><a class="menu" href="../../index.html"><i class="fa fa-unlock-alt"
+                                                                   aria-hidden="true"></i>&nbspWyloguj</a>
+                    </li>
+                    <li><a class="menu" href="admin/admin.html"><i class="fa fa-exclamation-triangle "
+                                                                   aria-hidden="true"></i>
+                        &nbspAdministrator</a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control menu" placeholder="Szukaj...">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-3 col-sm-2 col-xs-1"></div>
+        <div class="col-md-4 col-sm-8 col-xs-10">
+            <h1 class="naglowek"><span class="label label-default">Rejestracja nowych zawodów</span></h1>
+            <div class="panel panel-default" id="horsePanel">
+                <div class="panel-body">
+                    <form role="form" id="competition">
+                        <div class="form-group">
+                            <label>Data</label>&nbsp;
+                            <abbr title="Wybierz datę za pomocą kalendarza"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <div class="input-group input-daterange">
+                                <input type="text" class="input-sm form-control datepicker" name="start"
+                                       id="dateStart" required/>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </span>
+                                <span class="input-group-addon">do</span>
+                                <input type="text" onblur="return competitionValidate(1);"
+                                       class="input-sm form-control datepicker" name="end" id="dateEnd" required/>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="alert alert-danger" id="divDate" style="visibility: hidden">Niepoprawna data
+                                zakończenia
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="managerTrack">Gospodarz toru</label>&nbsp;
+                            <abbr title="Imię i nazwisko może składać się tylko z liter i może zawierać polskie znaki"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return competitionValidate(2);" class="form-control"
+                                   id="managerTrack"
+                                   placeholder="Wpisz imię i nazwisko" required/>
+                            <div class="alert alert-danger" id="divManagerTrack" style="visibility: hidden">Niepoprawny
+                                format
+                                imienia i nazwiska
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="manager">Kierownik zawodów</label>&nbsp;
+                            <abbr title="Imię i nazwisko może składać się tylko z liter i może zawierać polskie znaki"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return competitionValidate(3);" class="form-control" id="manager"
+                                   placeholder="Wpisz imię i nazwisko" required/>
+                            <div class="alert alert-danger" id="divManager" style="visibility: hidden">Niepoprawny
+                                format
+                                imienia i nazwiska
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="placeSize">Rozmiar placu konkursowego [m x m]</label>&nbsp;
+                            <abbr title="Rozmiar może być wyrażony jedynie za pomocą liczby [w metrach] zapisany na podstawie podanego wzoru"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return competitionValidate(4);" class="form-control"
+                                   id="placeSize"
+                                   placeholder="Szerokość x Długość" required/>
+                            <div class="alert alert-danger" id="divPlaceSize" style="visibility: hidden">Niepoprawny
+                                format
+                                rozmiaru
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="warmUpSize">Rozmiar rozprężalni [m x m]</label>&nbsp;
+                            <abbr title="Rozmiar może być wyrażony jedynie za pomocą liczby [w metrach] zapisany na podstawie podanego wzoru"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return competitionValidate(5);" class="form-control"
+                                   id="warmUpSize"
+                                   placeholder="Szerokość x Długość" required/>
+                            <div class="alert alert-danger" id="divWarmUp" style="visibility: hidden">Niepoprawny format
+                                rozmiaru
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ground">Podłoże</label>&nbsp;
+                            <abbr title="Nazwa podłoża może składać się tylko z liter i może zawierać polskie znaki"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return competitionValidate(6);" class="form-control" id="ground"
+                                   placeholder="Wpisz podłoże" required/>
+                            <div class="alert alert-danger" id="divGround" style="visibility: hidden">Niepoprawny format
+                                nazwy podłoża
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Wpisowe [zł]</label>&nbsp;
+                            <abbr title="Wpisowe może składać się tylko z liczb"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return competitionValidate(7);" class="form-control" id="price"
+                                   placeholder="Wpisz kwotę wpisowego" required/>
+                            <div class="alert alert-danger" id="divPrice" style="visibility: hidden">Niepoprawny format
+                                kwoty wpisowego
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-inverse"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspRejestruj
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-2 col-xs-1"></div>
+        <div class="col-md-4 col-sm-8 col-xs-10">
+            <div ng-view></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

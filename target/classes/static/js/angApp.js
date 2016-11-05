@@ -2,14 +2,6 @@
     var app = angular.module('myApp', ['ngRoute']);
 
     app.controller('Controller', ['$scope', '$http', function ($scope, $http) {
-        $scope.getMyUser = function (fileName) {
-            $http.get(fileName).success(function (data) {
-                $scope.users = data;
-                console.log(data);
-            });
-            return true;
-        };
-
         $scope.getMyRepo = function (path) {
             $http.get(path)
                 .success(function (data, status, headers, config) {
@@ -22,7 +14,7 @@
                     console.log("Error occured");
                 });
             return true;
-        };
+        }; // funkcja do pobrania danych
     }]); // Controller
 
     app.config(['$httpProvider', function ($httpProvider) {
@@ -33,20 +25,12 @@
     app.config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider
-                .when('/contributors', {
-                    templateUrl: 'lists/contributors.html',
-                    controller: 'Controller'
-                }, null)
-                .when('/contributorsTable', {
-                    templateUrl: 'lists/contributors_table.html',
-                    controller: 'Controller'
-                }, null)
                 .when('/repositories', {
                     templateUrl: 'lists/repositories.html',
                     controller: 'Controller'
                 }, null)
-                .when('/repositoriesTable', {
-                    templateUrl: 'lists/repositories_table.html',
+                .when('/addHorse', {
+                    templateUrl: '../lists/addHorse.html',
                     controller: 'Controller'
                 });
         }]); // RouteConfig

@@ -1,0 +1,120 @@
+<div class="panel panel-default" id="addHorsePanel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Dodaj nowego konia</h3>
+    </div>
+    <div class="panel-body">
+        <form role="form" id="horse">
+            <div class="form-group">
+                <label for="horseNameInput">Imię</label>&nbsp;
+                <abbr title="Imię może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                <input type="text" onblur="return horseValidate(1);" class="form-control"
+                       id="horseNameInput"
+                       placeholder="Wpisz imię" required>
+                <div class="alert alert-danger" id="divHorseName" style="visibility: hidden">Niepoprawny
+                    format
+                    imienia
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="motherNameInput">Ojciec</label>&nbsp;
+                <abbr title="Imię może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                <input type="text" onblur="return horseValidate(2);" class="form-control"
+                       id="motherNameInput"
+                       placeholder="Wpisz imię" required>
+                <div class="alert alert-danger" id="divMotherName" style="visibility: hidden">Niepoprawny
+                    format
+                    imienia
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fatherNameInput">Matka</label>&nbsp;
+                <abbr title="Imię może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                <input type="text" onblur="return horseValidate(3);" class="form-control"
+                       id="fatherNameInput"
+                       placeholder="Wpisz imię" required>
+                <div class="alert alert-danger" id="divFatherName" style="visibility: hidden">Niepoprawny
+                    format
+                    imienia
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="breedInput">Rasa</label>&nbsp;
+                <abbr title="Rasa może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                <input type="text" onblur="return horseValidate(4);" class="form-control" id="breedInput"
+                       placeholder="Wpisz rasę" required>
+                <div class="alert alert-danger" id="divBreed" style="visibility: hidden">Niepoprawny format
+                    maści
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="countryInput">Kraj pochodzenia</label>&nbsp;
+                <abbr title="Kraj może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                <input type="text" onblur="return horseValidate(5);" class="form-control" id="countryInput"
+                       placeholder="Wpisz kraj" required>
+                <div class="alert alert-danger" id="divCountry" style="visibility: hidden">Niepoprawny
+                    format
+                    maści
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="colorInput">Maść</label>&nbsp;
+                <abbr title="Maść może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                <input type="text" onblur="return horseValidate(6);" class="form-control" id="colorInput"
+                       placeholder="Wpisz maść" required>
+                <div class="alert alert-danger" id="divColor" style="visibility: hidden">Niepoprawny format
+                    maści
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Płeć</label><br/>
+                <select class="form-control" required name="sexInput">
+                    <option>Wybierz...</option>
+                    <option value="1">Klacz</option>
+                    <option value="2">Wałach</option>
+                    <option value="3">Ogier</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Data urodzenia</label>&nbsp;
+                <abbr title="Wybierz datę za pomocą kalendarza"><i
+                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                <div class="input-group input-daterange">
+                    <input type="text" class="input-sm form-control datepicker" name="start"
+                           id="dateStart"/>
+                    <span class="input-group-addon">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </span>
+                </div>
+
+                <script type="text/javascript">
+                    $(function () {
+                        $.datepicker.setDefaults($.datepicker.regional['pl']);
+                        $('.datepicker').datepicker({
+                            changeMonth: true,
+                            changeYear: true,
+                            dateFormat: 'yy-mm-dd'
+                        });
+                    });
+                </script>
+            </div>
+            <div class="form-group">
+                <label for="passportInput">Numer paszportu</label>&nbsp;
+                <abbr title="Paszport może składać się z dużych liter (bez polskich znaków) oraz z cyfr"><i
+                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                <input type="text" onblur="return horseValidate(7);" class="form-control" id="passportInput"
+                       placeholder="Wpisz numer" required>
+                <div class="alert alert-danger" id="divPassport" style="visibility: hidden">Niepoprawny
+                    format
+                    imienia
+                </div>
+            </div>
+            <button type="submit" class="btn btn-inverse"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspRejestruj
+            </button>
+        </form>
+    </div>

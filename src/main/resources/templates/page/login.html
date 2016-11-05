@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="Shortcut icon" href="../img/favicon.ico"  />
+    <title>Logowanie | Cavalli</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../app/app.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#log")[0].reset();
+            $("#register")[0].reset();
+        });
+    </script>
+
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+</head>
+<body>
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+        <div class="active item "></div>
+        <div class="item "></div>
+        <div class="item "></div>
+        <div class="item "></div>
+    </div>
+</div>
+<div id="main">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Rozwiń nawigację</span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html"><img src="../img/logo.png" class="logo"/></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a class="menu" href="#"><i class="fa fa-trophy" aria-hidden="true"></i>&nbspZawody</a></li>
+                    <li><a class="menu" href="startList.html"><i class="fa fa-bell-o" aria-hidden="true"></i>&nbspListy
+                        startowe</a>
+                    </li>
+                    <li><a class="menu" href="resultList.html"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbspWyniki</a>
+                    </li>
+                    <li><a class="menu" href="login.html"><i class="fa fa-lock"
+                                                             aria-hidden="true"></i>&nbspLogowanie</a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control menu" placeholder="Szukaj...">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-3 col-sm-2 col-xs-1"></div>
+        <div class="col-md-3 col-sm-2 col-xs-1">
+            <div class="panel panel-default" id="loginPanel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Logowanie</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" id="log">
+                        <div class="form-group">
+                            <label for="loginInput">Login</label>
+                            <input type="text" class="form-control" id="loginInput"
+                                   placeholder="Podaj login" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passInput">Hasło</label>
+                            <input name="passInput" type="password" class="form-control" id="passInput"
+                                   placeholder="Podaj hasło" required>
+                        </div>
+                        <a href="rider/mainPage.html">Zawodnik</a><br/><br/>
+                        <a href="organizer/mainPage.html">Organizator</a><br/><br/>
+                        <button type="submit" class="btn btn-inverse"><i class="fa fa-lock" aria-hidden="true"></i>&nbspZaloguj
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-2 col-xs-1">
+            <div class="panel panel-default" id="registerPanel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Nie masz konta? Zarejestruj się!</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" id="register">
+                        <div class="form-group">
+                            <label for="nameInput">Imię</label>&nbsp;
+                            <abbr title="Imię może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return registerValidate(1);" class="form-control" id="nameInput"
+                                   placeholder="Wpisz imię" required>
+                            <div class="alert alert-danger" id="divName" style="visibility: hidden">Niepoprawny format
+                                imienia
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastNameInput">Nazwisko</label>&nbsp;
+                            <abbr title="Nazwisko może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return registerValidate(2);" class="form-control"
+                                   id="lastNameInput"
+                                   placeholder="Wpisz nazwisko" required>
+                            <div class="alert alert-danger" id="divLastName" style="visibility: hidden">Niepoprawny
+                                format
+                                nazwiska
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mailInput">E-mail</label>
+                            <input type="email" class="form-control" id="mailInput" placeholder="Wpisz e-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneInput">Telefon</label>
+                            <input type="text" onblur="return registerValidate(3);" class="form-control" id="phoneInput"
+                                   placeholder="XXX-XXX-XXX" required>
+                            <div class="alert alert-danger" id="divPhone" style="visibility: hidden">Niepoprawny format
+                                telefonu
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="licence">Numer licencji PZJ</label>
+                            <abbr title="Numer licencji może składać się z dużych liter (bez polskich znaków) oraz z cyfr"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return registerValidate(6);" class="form-control" id="licence"
+                                   placeholder="Wpisz numer licencji" required>
+                            <div class="alert alert-danger" id="divLicence" style="visibility: hidden">Niepoprawny
+                                format
+                                licencji
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newLoginInput">Login</label>&nbsp;
+                            <abbr title="Login może składać się z dużych i małych liter (bez polskich znaków) oraz z cyfr"><i
+                                    class="fa fa-question-circle fa-lg"
+                                    aria-hidden="true"></i></abbr>
+                            <input type="text" onblur="return registerValidate(4);" class="form-control"
+                                   id="newLoginInput"
+                                   placeholder="Podaj login" required>
+                            <div class="alert alert-danger" id="divNewLogin" style="visibility: hidden">Niepoprawny
+                                format
+                                loginu
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassInput">Hasło</label>&nbsp;
+                            <abbr title="Hasło może zawierać duże i małe litery, cyfry oraz znaki specjalne"><i
+                                    class="fa fa-question-circle fa-lg"
+                                    aria-hidden="true"></i></abbr>
+                            <input type="password" class="form-control" id="newPassInput" placeholder="Podaj hasło"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="repeatPassInput">Powtórz hasło</label>
+                            <input type="password" onblur="return registerValidate(5);" class="form-control"
+                                   id="repeatPassInput" placeholder="Powtórz hasło" required>
+                            <div class="alert alert-danger" id="x" style="visibility: hidden">Niezgodność
+                                haseł
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-inverse"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspRejestruj
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

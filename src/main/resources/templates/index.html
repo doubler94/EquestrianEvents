@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head lang="en" >
-    <!--<meta charset="UTF-8">-->
-    <!--<link rel="Shortcut icon" th:href="@{/../static/img/favicon.ico}"  />-->
+<head>
+    <meta charset="UTF-8">
+    <link rel="Shortcut icon" href="../../img/favicon.ico"  />
     <title>Strona główna | Cavalli</title>
-    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{../static/js/app.js}"></script>
-    <script type="text/javascript" th:src="@{../../../../lib/jquery-3.1.1.js}"></script>
-    <script type="text/javascript" th:src="@{../../../../lib/bootstrap.js}"></script>
-    <script type="text/javascript" th:src="@{../../../../lib/less.min.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/app.js"></script>
+    <script type="text/javascript" src="../../lib/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="../../lib/bootstrap.js"></script>
 
-    <link rel="stylesheet" th:href="@{../static/css/bootstrap.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{../static/css/style.css}" type="text/css"/>
-    <link th:href="@{http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/style.css" type="text/css"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -33,25 +32,25 @@
                     <span class="sr-only">Rozwiń nawigację</span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="img/logo.png" class="logo"/></a>
+                <a class="navbar-brand" href="index.html"><img src="../../img/logo.png" class="logo"/></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <!--<li><a class="menu" th:href="#"><i class="fa fa-trophy" aria-hidden="true"></i>&nbspZawody</a>-->
-                    <!--</li>-->
-                    <!--<li><a class="menu" th:href="page/startList.html"><i class="fa fa-bell-o"-->
-                                                                      <!--aria-hidden="true"></i>&nbspListy-->
-                        <!--startowe</a>-->
-                    <!--</li>-->
-                    <!--<li><a class="menu" th:href="page/resultList.html"><i class="fa fa-file-text-o"-->
-                                                                       <!--aria-hidden="true"></i>&nbspWyniki</a>-->
-                    <!--</li>-->
-                    <!--<li><a class="menu" th:href="page/login.html"><i class="fa fa-lock" aria-hidden="true"></i>&nbspLogowanie</a>-->
-                    <!--</li>-->
+                    <li><a class="menu" href="#"><i class="fa fa-trophy" aria-hidden="true"></i>&nbspZawody</a>
+                    </li>
+                    <li><a class="menu" href="page/startList.html"><i class="fa fa-bell-o"
+                                                                                                        aria-hidden="true"></i>&nbspListy
+                        startowe</a>
+                    </li>
+                    <li><a class="menu" href="page/resultList.html"><i class="fa fa-file-text-o"
+                                                                                                         aria-hidden="true"></i>&nbspWyniki</a>
+                    </li>
+                    <li><a class="menu" href="page/login.html"><i class="fa fa-lock" aria-hidden="true"></i>&nbspLogowanie</a>
+                    </li>
                 </ul>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
-                        <!--<input type="text" class="form-control menu" placeholder="Szukaj...">-->
+                        <input type="text" class="form-control menu" placeholder="Szukaj...">
                     </div>
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"
                                                                      aria-hidden="true"></i>
@@ -76,7 +75,7 @@
                     <i>przeczytaj
                         nasz
                         krótki przewodnik</i>!<br/><br/>Pozdrawiamy,<br/><i><b>Zespoł Cavalli</b></i><br/>
-                    <!--<img class="ikona" src="img/favicon.ico"/>-->
+                    <img class="ikona" src="../../img/favicon.ico"/>
                 </div>
             </div>
         </div>
@@ -150,6 +149,6 @@
         </div>
     </div>
 </div>
-<!--</div>-->
+</div>
 </body>
 </html>
