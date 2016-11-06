@@ -95,13 +95,13 @@
                     <h3 class="panel-title">Nie masz konta? Zarejestruj się!</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" id="register">
+                    <form role="form" id="register" th:action="@{/login/register}" th:object="${rider}" method="post">
                         <div class="form-group">
                             <label for="nameInput">Imię</label>&nbsp;
                             <abbr title="Imię może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <input type="text" onblur="return registerValidate(1);" class="form-control" id="nameInput"
-                                   placeholder="Wpisz imię" required>
+                                   placeholder="Wpisz imię" required th:field="*{name}">
                             <div class="alert alert-danger" id="divName" style="visibility: hidden">Niepoprawny format
                                 imienia
                             </div>
@@ -111,7 +111,7 @@
                             <abbr title="Nazwisko może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <input type="text" onblur="return registerValidate(2);" class="form-control"
-                                   id="lastNameInput"
+                                   id="lastNameInput" th:field="*{lastName}"
                                    placeholder="Wpisz nazwisko" required>
                             <div class="alert alert-danger" id="divLastName" style="visibility: hidden">Niepoprawny
                                 format
@@ -120,12 +120,12 @@
                         </div>
                         <div class="form-group">
                             <label for="mailInput">E-mail</label>
-                            <input type="email" class="form-control" id="mailInput" placeholder="Wpisz e-mail" required>
+                            <input type="email" class="form-control" id="mailInput" placeholder="Wpisz e-mail" required th:field="*{email}">
                         </div>
                         <div class="form-group">
                             <label for="phoneInput">Telefon</label>
                             <input type="text" onblur="return registerValidate(3);" class="form-control" id="phoneInput"
-                                   placeholder="XXX-XXX-XXX" required>
+                                   placeholder="XXX-XXX-XXX" required th:field="*{phone}">
                             <div class="alert alert-danger" id="divPhone" style="visibility: hidden">Niepoprawny format
                                 telefonu
                             </div>
@@ -135,7 +135,7 @@
                             <abbr title="Numer licencji może składać się z dużych liter (bez polskich znaków) oraz z cyfr"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <input type="text" onblur="return registerValidate(6);" class="form-control" id="licence"
-                                   placeholder="Wpisz numer licencji" required>
+                                   placeholder="Wpisz numer licencji" required th:field="*{license}">
                             <div class="alert alert-danger" id="divLicence" style="visibility: hidden">Niepoprawny
                                 format
                                 licencji
