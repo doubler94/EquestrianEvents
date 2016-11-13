@@ -19,7 +19,6 @@ public class RiderServiceImpl implements RiderService {
     RiderRepository riderRepository;
 
     @Override
-    @Transactional
     public Rider create(Rider rider) {
         Rider createdRider = rider;
         return riderRepository.save(createdRider);

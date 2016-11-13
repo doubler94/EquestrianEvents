@@ -23,11 +23,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     private static final String[] CLASSPATH_RESOURCE_LOCATIONS = new String[]{
             "classpath:/resources/",
             "classpath:/static/",
-            "classpath:/templates/"
+            "classpath:/templates/",
     };
 
-    @Autowired
-    private Environment environment;
+//    @Autowired
+//    private Environment environment;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
