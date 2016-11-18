@@ -1,6 +1,7 @@
 package cavali.config;
 
 import org.hibernate.ejb.HibernatePersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,13 +10,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import javax.inject.Inject;
-import javax.persistence.EntityManagerFactory;
 import java.util.Properties;
 
 /**
@@ -27,7 +24,7 @@ import java.util.Properties;
 @PropertySource({"classpath:hibernate.properties"})
 public class HibernateConfig {
 
-    @Inject
+    @Autowired
     private Environment environment;
 
     @Bean
