@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @ComponentScan({"cavali"})
 @Import({HibernateConfig.class
         ,ThymeleafConfig.class
-        ,SecurityConfiguration.class})
+        ,SecurityConfig.class})
 @PropertySource(value = {"classpath:application.properties"})
 @EnableJpaRepositories("cavali.repository")
 public class AppConfig extends WebMvcConfigurerAdapter {

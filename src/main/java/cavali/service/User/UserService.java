@@ -15,4 +15,5 @@ public interface UserService {
     List<User> findAll();
     User update(User user) throws UserNotFoundException;
     User findByid(int id);
+    User findBylogin(String username);
 }

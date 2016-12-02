@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Ola on 05.11.2016.
  */
 @Controller
+@RequestMapping(value = RiderUrls.RIDER)
 public class RiderController {
 
     public static String viewPath = "page/rider/";
@@ -19,7 +20,7 @@ public class RiderController {
     @Autowired
     private RiderService riderService;
 
-    @RequestMapping(value = RiderUrls.RIDER, method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String mainPage()
     {
         return viewPath + "mainPage";

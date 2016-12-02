@@ -14,7 +14,7 @@ public class User {
     @Column(name = "Id")
     private Integer id;
 
-    @Column(name = "Login")
+    @Column(name = "Username")
     private String login;
 
     @Column(name = "Password")
@@ -53,5 +53,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

@@ -5,11 +5,9 @@ import cavali.entity.User.User;
 import cavali.service.Rider.RiderService;
 import cavali.service.User.UserService;
 import cavali.url.AppUrls;
-import cavali.url.Login.LoginUrls;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,11 +70,11 @@ public class ApplicationController {
     @RequestMapping(value = AppUrls.LOGIN_REGISTER, method = POST)
     @Transactional
     public String registerUser(@ModelAttribute Rider rider, @ModelAttribute User user){
-        user.setRole("Admin");
+        user.setRole("ADMIN");
         userService.create(user);
         rider.setUser(user);
         riderService.create(rider);
-        return "redirect:" + LoginUrls.LOGIN;
+        return "redirect:" + AppUrls.LOGIN;
     }
 
     @RequestMapping(value = AppUrls.LOGOUT, method = RequestMethod.GET)
@@ -85,7 +83,7 @@ public class ApplicationController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/login?logout";
+        return "redirect:" + AppUrls.APP;
     }
 
 //    private String getPrincipal(){
