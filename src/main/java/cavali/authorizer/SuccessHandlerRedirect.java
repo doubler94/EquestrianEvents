@@ -49,7 +49,7 @@ public class SuccessHandlerRedirect extends SimpleUrlAuthenticationSuccessHandle
         if (isDba(roles)) {
             url = "/db";
         } else if (isAdmin(roles)) {
-            url = "/admin";
+            url = "/organizer";
         } else if (isUser(roles)) {
             url = "/rider";
         } else {

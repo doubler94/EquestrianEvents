@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Ola on 05.11.2016.
  */
 @Controller
-@RequestMapping(value = RiderUrls.RIDER)
+@RequestMapping()
 public class RiderController {
 
     public static String viewPath = "page/rider/";
@@ -20,9 +20,33 @@ public class RiderController {
     @Autowired
     private RiderService riderService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = RiderUrls.RIDER, method = RequestMethod.GET)
     public String mainPage()
     {
         return viewPath + "mainPage";
+    }
+
+    @RequestMapping(value = RiderUrls.RIDER_HORSEREGISTER, method = RequestMethod.GET)
+    public String viewHorseRegister()
+    {
+        return viewPath + "horseRegister";
+    }
+
+    @RequestMapping(value = RiderUrls.RIDER_HORSEEDIT, method = RequestMethod.GET)
+    public String viewHorseEdit()
+    {
+        return viewPath + "horseEdit";
+    }
+
+    @RequestMapping(value = RiderUrls.RIDER_HORSEDELETE, method = RequestMethod.GET)
+    public String viewHorseDelete()
+    {
+        return viewPath + "horseDelete";
+    }
+
+    @RequestMapping(value = RiderUrls.RIDER_RIDEREDIT, method = RequestMethod.GET)
+    public String viewRiderEdit()
+    {
+        return viewPath + "riderEdit";
     }
 }
