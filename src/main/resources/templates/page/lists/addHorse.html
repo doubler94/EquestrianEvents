@@ -41,6 +41,17 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="passportInput">Numer paszportu</label>&nbsp;
+                <abbr title="Paszport może składać się z dużych liter (bez polskich znaków) oraz z cyfr"><i
+                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                <input type="text" onblur="return horseValidate(7);" class="form-control" id="passportInput"
+                       placeholder="Wpisz numer" required>
+                <div class="alert alert-danger" id="divPassport" style="visibility: hidden">Niepoprawny
+                    format
+                    imienia
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="breedInput">Rasa</label>&nbsp;
                 <abbr title="Rasa może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
                         class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
@@ -91,7 +102,6 @@
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                 </span>
                 </div>
-
                 <script type="text/javascript">
                     $(function () {
                         $.datepicker.setDefaults($.datepicker.regional['pl']);
@@ -103,18 +113,8 @@
                     });
                 </script>
             </div>
-            <div class="form-group">
-                <label for="passportInput">Numer paszportu</label>&nbsp;
-                <abbr title="Paszport może składać się z dużych liter (bez polskich znaków) oraz z cyfr"><i
-                        class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
-                <input type="text" onblur="return horseValidate(7);" class="form-control" id="passportInput"
-                       placeholder="Wpisz numer" required>
-                <div class="alert alert-danger" id="divPassport" style="visibility: hidden">Niepoprawny
-                    format
-                    imienia
-                </div>
-            </div>
             <button type="submit" class="btn btn-inverse"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspRejestruj
             </button>
         </form>
     </div>
+</div>

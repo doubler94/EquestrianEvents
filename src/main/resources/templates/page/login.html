@@ -32,7 +32,7 @@
                     <h3 class="panel-title">Logowanie</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" id="log" th:action="${T(cavali.url.AppUrls).LOGIN}" method="post">
+                    <form role="form" id="log" th:action="${T(cavalli.url.AppUrls).LOGIN}" method="post">
                         <div class="form-group">
                             <label for="loginInput">Login</label>
                             <input type="text" class="form-control" id="loginInput"
@@ -43,8 +43,6 @@
                             <input name="password" type="password" class="form-control" id="passInput"
                                    placeholder="Podaj hasło" required>
                         </div>
-                        <a href="rider/mainPage.html">Zawodnik</a><br/><br/>
-                        <a href="organizer/mainPage.html">Organizator</a><br/><br/>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <button type="submit" class="btn btn-inverse"><i class="fa fa-lock" aria-hidden="true"></i>&nbspZaloguj
                         </button>
@@ -58,13 +56,14 @@
                     <h3 class="panel-title">Nie masz konta? Zarejestruj się!</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" id="register" th:action="${T(cavali.url.AppUrls).LOGIN_REGISTER}" method="post">
+                    <form role="form" id="register" th:action="${T(cavalli.url.AppUrls).LOGIN_REGISTER}" method="post">
                         <div class="form-group">
                             <label for="nameInput">Imię</label>&nbsp;
                             <abbr title="Imię może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
-                            <input type="text" onblur="return registerValidate(1);" class="form-control" id="nameInput"
-                                   placeholder="Wpisz imię" required name="name" th:value="${rider.name}">
+                            <input type="text" class="form-control" id="nameInput"
+                                   placeholder="Wpisz imię" required name="name" onblur="registerValidate(1)"
+                                   th:value="${rider.name}">
                             <div class="alert alert-danger" id="divName" style="visibility: hidden">Niepoprawny format
                                 imienia
                             </div>
@@ -73,8 +72,9 @@
                             <label for="lastNameInput">Nazwisko</label>&nbsp;
                             <abbr title="Nazwisko może składać się tylko z liter, może zawierać polskie znaki i musi zaczynać się dużą literą"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
-                            <input type="text" onblur="return registerValidate(2);" class="form-control"
-                                   id="lastNameInput" name="lastName" th:value="${rider.lastName}"
+                            <input type="text" class="form-control"
+                                   id="lastNameInput" name="lastName" onblur="registerValidate(2)"
+                                   th:value="${rider.lastName}"
                                    placeholder="Wpisz nazwisko" required>
                             <div class="alert alert-danger" id="divLastName" style="visibility: hidden">Niepoprawny
                                 format
@@ -82,37 +82,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="mailInput">E-mail</label>
-                            <input type="email" class="form-control" id="mailInput" placeholder="Wpisz e-mail" required
-                                   name="email" th:value="${rider.email}">
-                        </div>
-                        <div class="form-group">
-                            <label for="phoneInput">Telefon</label>
-                            <input type="text" onblur="return registerValidate(3);" class="form-control" id="phoneInput"
-                                   placeholder="XXX-XXX-XXX" required name="phone" th:value="${rider.phone}">
-                            <div class="alert alert-danger" id="divPhone" style="visibility: hidden">Niepoprawny format
-                                telefonu
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="licence">Numer licencji PZJ</label>
-                            <abbr title="Numer licencji może składać się z dużych liter (bez polskich znaków) oraz z cyfr"><i
-                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
-                            <input type="text" onblur="return registerValidate(6);" class="form-control" id="licence"
-                                   placeholder="Wpisz numer licencji" required name="license"
-                                   th:value="${rider.license}">
-                            <div class="alert alert-danger" id="divLicence" style="visibility: hidden">Niepoprawny
-                                format
-                                licencji
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="newLoginInput">Login</label>&nbsp;
                             <abbr title="Login może składać się z dużych i małych liter (bez polskich znaków) oraz z cyfr"><i
                                     class="fa fa-question-circle fa-lg"
                                     aria-hidden="true"></i></abbr>
-                            <input type="text" onblur="return registerValidate(4);" class="form-control"
-                                   id="newLoginInput" name="login" th:value="${user.login}"
+                            <input type="text" class="form-control"
+                                   id="newLoginInput" name="login" onblur="registerValidate(4)" th:value="${user.login}"
                                    placeholder="Podaj login" required>
                             <div class="alert alert-danger" id="divNewLogin" style="visibility: hidden">Niepoprawny
                                 format
@@ -129,11 +104,38 @@
                         </div>
                         <div class="form-group">
                             <label for="repeatPassInput">Powtórz hasło</label>
-                            <input type="password" onblur="return registerValidate(5);" class="form-control"
+                            <input type="password" class="form-control" onblur="registerValidate(5)"
                                    id="repeatPassInput" placeholder="Powtórz hasło" required>
-                            <div class="alert alert-danger" id="x" style="visibility: hidden">Niezgodność
+                            <div class="alert alert-danger" id="divRepeatPass" style="visibility: hidden">Niezgodność
                                 haseł
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="licence">Numer licencji PZJ</label>
+                            <abbr title="Numer licencji może składać się z dużych liter (bez polskich znaków) oraz z cyfr"><i
+                                    class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
+                            <input type="text" class="form-control" id="licence"
+                                   placeholder="Wpisz numer licencji" required name="license"
+                                   onblur="registerValidate(6)"
+                                   th:value="${rider.license}">
+                            <div class="alert alert-danger" id="divLicence" style="visibility: hidden">Niepoprawny
+                                format
+                                licencji
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneInput">Telefon</label>
+                            <input type="text" class="form-control" id="phoneInput"
+                                   placeholder="XXX-XXX-XXX" required name="phone" onblur="registerValidate(3)"
+                                   th:value="${rider.phone}">
+                            <div class="alert alert-danger" id="divPhone" style="visibility: hidden">Niepoprawny format
+                                telefonu
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mailInput">E-mail</label>
+                            <input type="email" class="form-control" id="mailInput" placeholder="Wpisz e-mail" required
+                                   name="email" th:value="${rider.email}">
                         </div>
                         <button type="submit" class="btn btn-inverse"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspRejestruj
                         </button>

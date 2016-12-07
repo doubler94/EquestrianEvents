@@ -22,16 +22,35 @@
         delete $httpProvider.defaults.headers.common["X-Requested-With"];
     }]); // httpConfig
 
+    // app.config(function ($stateProvider, $urlRouterProvider) {
+
+    //     $stateProvider
+    //         .state('addHorse', {
+    //             url:'/addHorse',
+    //             templateUrl: '/page/lists/addHorse',
+    //             controller: 'Controller'
+    //         })
+    //         .state('repositories', {
+    //             url:'/repositories',
+    //             templateUrl:'/page/lists/repositories.html',
+    //             controller: 'HotelCtrl'
+    //         });
+    // });
+
     app.config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider
                 .when('/repositories', {
-                    templateUrl: 'lists/repositories.html',
+                    templateUrl: '/page/lists/repositories.html',
                     controller: 'Controller'
                 }, null)
-                .when('/addHorse', {
-                    templateUrl: '../lists/addHorse.html',
+                .when('/addHorses', {
+                    templateUrl: '/page/lists/addHorse.html',
                     controller: 'Controller'
+                })
+                .otherwise({
+                    redirectTo: '/rider/horseDelete'
                 });
         }]); // RouteConfig
+
 })();

@@ -68,6 +68,7 @@ function registerValidate(value) {
             }
             break;
     }
+
 }
 
 function horseValidate(value) {
