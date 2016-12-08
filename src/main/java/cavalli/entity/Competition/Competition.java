@@ -32,7 +32,7 @@ public class Competition {
     private String Price;
 
     @JoinColumn(name = "UserId")
-    @OneToOne
+    @ManyToOne
     private User user;
 
     public Integer getId() {

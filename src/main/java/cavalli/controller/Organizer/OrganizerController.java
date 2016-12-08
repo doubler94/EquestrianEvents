@@ -75,8 +75,9 @@ public class OrganizerController {
 
     @RequestMapping(value = OrganizerUrls.ORGANIZER_COMPETITION_ADD, method = POST)
     @Transactional
-    public String addCompetition(@ModelAttribute("competition") Competition competition, @ModelAttribute User user) {
-//        competition.setUserId(userUtils.getPrincipal());
+    public String addCompetition(@ModelAttribute("competition") Competition competition) {
+        User user = userService.findBylogin(userUtils.getPrincipal());
+        competition.setUser(user);
         competitionService.create(competition);
         return "redirect:" + OrganizerUrls.ORGANIZER;
     }
