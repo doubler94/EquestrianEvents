@@ -168,7 +168,7 @@ function competitionValidate(value) {
     switch (value) {
         case 1:
             // data
-            if (dateEnd < dateStart) {
+            if (dateEnd > dateStart) {
                 $("#divDate").css("visibility", "visible").css("height", "30px").css("margin", "3px").css("padding", "5px");
             }
             else {

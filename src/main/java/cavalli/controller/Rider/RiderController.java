@@ -25,7 +25,6 @@ public class RiderController {
     public String mainPage(ModelMap model) {
         UserUtils userUtils = new UserUtils();
         String userLogged = userUtils.getPrincipal();
-        System.out.println(userLogged);
         model.addAttribute("userLogged", userLogged);
         return viewPath + "mainPage";
     }

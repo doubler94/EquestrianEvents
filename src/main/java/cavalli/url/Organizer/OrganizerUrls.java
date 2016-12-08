@@ -14,4 +14,8 @@ public class OrganizerUrls {
     public static final String ORGANIZER_ADMIN_ORGANIZERADD = ORGANIZER_ADMIN + "/add";
     public static final String ORGANIZER_ADMIN_ORGANIZERDELETE = ORGANIZER_ADMIN + "/delete";
 
+    public static final String ORGANIZER_COMPETITION_ADD = ORGANIZER + "/addCompetition";
+    public static final String ORGANIZER_COMPETITION_DELETE = ORGANIZER + "/deleteCompetition";
+    public static final String ORGANIZER_COMPETITION_EDIT = ORGANIZER + "/editCompetition";
+
 }
