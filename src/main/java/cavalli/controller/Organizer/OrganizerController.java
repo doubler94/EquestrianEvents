@@ -22,7 +22,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * Created by Ola on 04.11.2016.
  */
 @Controller
-@RequestMapping()
 public class OrganizerController {
 
     public static String viewPath = "page/organizer/";
@@ -39,14 +38,14 @@ public class OrganizerController {
     public String mainPage(ModelMap model) {
         String userLogged = userUtils.getPrincipal();
         model.addAttribute("userLogged", userLogged);
-        return viewPath + "mainPage";
+        return this.viewPath + "mainPage";
     }
 
     @RequestMapping(value = OrganizerUrls.ORGANIZER_COMPETITIONADD, method = RequestMethod.GET)
     public String viewCompetitionAdd(ModelMap model) {
         model.addAttribute("competition", new Competition());
         model.addAttribute("user", new User());
-        return viewPath + "competitionAdd";
+        return this.viewPath + "competitionAdd";
     }
 
     @RequestMapping(value = OrganizerUrls.ORGANIZER_COMPETITIONDELETE, method = RequestMethod.GET)
@@ -76,8 +75,8 @@ public class OrganizerController {
 
     @RequestMapping(value = OrganizerUrls.ORGANIZER_COMPETITION_ADD, method = POST)
     @Transactional
-    public String addCompetition(@ModelAttribute Competition competition, @ModelAttribute User user) {
-        competition.setUserId(userUtils.getPrincipal());
+    public String addCompetition(@ModelAttribute("competition") Competition competition, @ModelAttribute User user) {
+//        competition.setUserId(userUtils.getPrincipal());
         competitionService.create(competition);
         return "redirect:" + OrganizerUrls.ORGANIZER;
     }

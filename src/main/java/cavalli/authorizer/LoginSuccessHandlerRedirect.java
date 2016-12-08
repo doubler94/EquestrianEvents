@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Ola on 18.11.2016.
  */
 @Component
-public class SuccessHandlerRedirect extends SimpleUrlAuthenticationSuccessHandler {
+public class LoginSuccessHandlerRedirect extends SimpleUrlAuthenticationSuccessHandler {
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 

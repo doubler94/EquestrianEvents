@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="Shortcut icon" th:href="@{/img/favicon.ico}" href="../../../static/img/favicon.ico"/>
@@ -47,15 +47,15 @@
                             <abbr title="Wybierz datę za pomocą kalendarza"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <div class="input-group input-daterange">
-                                <input type="text" class="input-sm form-control datepicker" name="start"
-                                       id="dateStart" th:value="${competition.StartDate}" required/>
+                                <input type="text" class="input-sm form-control datepicker" name="startDate"
+                                       id="dateStart" th:value="${competition.startDate}" required/>
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                 </span>
                                 <span class="input-group-addon">do</span>
                                 <input type="text" onblur="return competitionValidate(1);"
-                                       class="input-sm form-control datepicker" name="end" id="dateEnd"
-                                       th:value="${competition.StopDate}" required/>
+                                       class="input-sm form-control datepicker" name="stopDate" id="dateEnd"
+                                       th:value="${competition.stopDate}" required/>
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                 </span>
@@ -69,7 +69,7 @@
                             <abbr title="Imię i nazwisko może składać się tylko z liter i może zawierać polskie znaki"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <input type="text" onblur="return competitionValidate(2);" class="form-control"
-                                   id="managerTrack" th:value="${competition.ManagerTrack}"
+                                   id="managerTrack" th:value="${competition.managerTrack}" name="managerTrack"
                                    placeholder="Wpisz imię i nazwisko" required/>
                             <div class="alert alert-danger" id="divManagerTrack" style="visibility: hidden">Niepoprawny
                                 format
@@ -81,7 +81,7 @@
                             <abbr title="Imię i nazwisko może składać się tylko z liter i może zawierać polskie znaki"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <input type="text" onblur="return competitionValidate(3);" class="form-control" id="manager"
-                                   placeholder="Wpisz imię i nazwisko" th:value="${competition.Manager}" required/>
+                                   placeholder="Wpisz imię i nazwisko" th:value="${competition.manager}" name="manager" required/>
                             <div class="alert alert-danger" id="divManager" style="visibility: hidden">Niepoprawny
                                 format
                                 imienia i nazwiska
@@ -92,7 +92,7 @@
                             <abbr title="Rozmiar może być wyrażony jedynie za pomocą liczby [w metrach] zapisany na podstawie podanego wzoru"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <input type="text" onblur="return competitionValidate(4);" class="form-control"
-                                   id="placeSize" th:value="${competition.PlaceSize}"
+                                   id="placeSize" th:value="${competition.placeSize}" name="placeSize"
                                    placeholder="Szerokość x Długość" required/>
                             <div class="alert alert-danger" id="divPlaceSize" style="visibility: hidden">Niepoprawny
                                 format
@@ -104,7 +104,7 @@
                             <abbr title="Rozmiar może być wyrażony jedynie za pomocą liczby [w metrach] zapisany na podstawie podanego wzoru"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <input type="text" onblur="return competitionValidate(5);" class="form-control"
-                                   id="warmUpSize" th:value="${competition.WarmUpSize}"
+                                   id="warmUpSize" th:value="${competition.warmUpSize}" name="warmUpSize"
                                    placeholder="Szerokość x Długość" required/>
                             <div class="alert alert-danger" id="divWarmUp" style="visibility: hidden">Niepoprawny format
                                 rozmiaru
@@ -115,7 +115,7 @@
                             <abbr title="Nazwa podłoża może składać się tylko z liter i może zawierać polskie znaki"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <input type="text" onblur="return competitionValidate(6);" class="form-control" id="ground"
-                                   placeholder="Wpisz podłoże" th:value="${competition.Ground}" required/>
+                                   placeholder="Wpisz podłoże" th:value="${competition.ground}" name="ground" required/>
                             <div class="alert alert-danger" id="divGround" style="visibility: hidden">Niepoprawny format
                                 nazwy podłoża
                             </div>
@@ -125,7 +125,7 @@
                             <abbr title="Wpisowe może składać się tylko z liczb"><i
                                     class="fa fa-question-circle fa-lg" aria-hidden="true"></i></abbr>
                             <input type="text" onblur="return competitionValidate(7);" class="form-control" id="price"
-                                   placeholder="Wpisz kwotę wpisowego" th:value="${competition.Price}" required/>
+                                   placeholder="Wpisz kwotę wpisowego" th:value="${competition.price}" name="price" required/>
                             <div class="alert alert-danger" id="divPrice" style="visibility: hidden">Niepoprawny format
                                 kwoty wpisowego
                             </div>

@@ -6,6 +6,7 @@ import cavalli.service.Rider.RiderService;
 import cavalli.service.User.UserService;
 import cavalli.url.AppUrls;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.security.Principal;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -66,9 +69,15 @@ public class ApplicationController {
 
     @RequestMapping(value = AppUrls.LOGIN, method = GET)
     public String loginPage(ModelMap model) {
-        model.addAttribute("rider", new Rider());
-        model.addAttribute("user", new User());
-        return this.viewPath + "login";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth instanceof AnonymousAuthenticationToken) {
+            model.addAttribute("rider", new Rider());
+            model.addAttribute("user", new User());
+            return this.viewPath + "login";
+        }
+        else {
+                return "redirect:" + AppUrls.APP;
+        }
     }
 
     @RequestMapping(value = AppUrls.LOGIN_REGISTER, method = POST)

@@ -31,7 +31,9 @@ public class Competition {
 
     private String Price;
 
-    private String UserId;
+    @JoinColumn(name = "UserId")
+    @OneToOne
+    private User user;
 
     public Integer getId() {
         return Id;
@@ -105,13 +107,14 @@ public class Competition {
         this.Price = Price;
     }
 
-    public String getUserId() {
-        return UserId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String UserId) {
-        this.UserId = UserId;
+    public void setUser(User user) {
+        this.user = user;
     }
+
 
 
 }
