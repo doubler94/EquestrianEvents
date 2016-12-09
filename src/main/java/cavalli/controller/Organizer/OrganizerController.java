@@ -11,10 +11,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -49,7 +54,19 @@ public class OrganizerController {
     }
 
     @RequestMapping(value = OrganizerUrls.ORGANIZER_COMPETITIONDELETE, method = RequestMethod.GET)
-    public String viewCompetitionDelete() {
+    public String viewCompetitionDelete(@ModelAttribute Competition competition, ModelMap model) {
+        Map<Integer, Competition> map = new HashMap<Integer, Competition>();
+        List<Competition> competitions = competitionService.findAll();
+        for (Competition compe : competitions )
+        {
+            System.out.println(compe);
+//            String name = competition.getUser().getLogin() +", "+ competition.getStartDate() + " - " + competition.getStopDate();
+            map.put(competition.getId(), compe);
+            System.out.println(map.size());
+        }
+
+        model.addAttribute("competitionList", map);
+
         return viewPath + "competitionDelete";
     }
 

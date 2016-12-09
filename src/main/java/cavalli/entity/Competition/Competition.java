@@ -115,6 +115,19 @@ public class Competition {
         this.user = user;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Competition{" +
+                "Id=" + Id +
+                ", StartDate='" + StartDate + '\'' +
+                ", StopDate='" + StopDate + '\'' +
+                ", ManagerTrack='" + ManagerTrack + '\'' +
+                ", Manager='" + Manager + '\'' +
+                ", PlaceSize='" + PlaceSize + '\'' +
+                ", WarmUpSize='" + WarmUpSize + '\'' +
+                ", Ground='" + Ground + '\'' +
+                ", Price='" + Price + '\'' +
+                ", user=" + user +
+                '}';
+    }
 }

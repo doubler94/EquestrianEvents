@@ -25,11 +25,11 @@
             <h1 class="naglowek"><span class="label label-default">Wycofaie zawodów</span></h1>
             <div class="panel panel-default" id="horsePanel">
                 <div class="panel-body">
-                    <form role="form" id="horse">
+                    <form role="form" id="horse" th:object="${competition}">
                         <div class="form-group">
                             <label>Które zawody?</label><br/>
-                            <select class="form-control" required>
-                                <option>Wybierz...</option>
+                            <select class="form-control box-shadow info_dropdown" name="selectCompetition" th:field="*{id}" required>
+                                <option th:each="entry : ${competitionList.entrySet()}" th:value="${entry.key}" th:text="${entry.value}">Wybierz...</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-inverse"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspUsuń
