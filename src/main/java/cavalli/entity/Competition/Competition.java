@@ -1,5 +1,6 @@
 package cavalli.entity.Competition;
 
+import cavalli.entity.Rider.Rider;
 import cavalli.entity.User.User;
 
 import javax.persistence.*;

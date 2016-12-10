@@ -25,11 +25,11 @@
             <h1 class="naglowek"><span class="label label-default">Wycofaie zawodów</span></h1>
             <div class="panel panel-default" id="horsePanel">
                 <div class="panel-body">
-                    <form role="form" id="horse" th:object="${competition}">
+                    <form role="form" id="horse" th:object="${competition}" th:action="${T(cavalli.url.Organizer.OrganizerUrls).ORGANIZER_COMPETITION_DELETE}" method="post">
                         <div class="form-group">
                             <label>Które zawody?</label><br/>
-                            <select class="form-control box-shadow info_dropdown" name="selectCompetition" th:field="*{id}" required>
-                                <option th:each="entry : ${competitionList.entrySet()}" th:value="${entry.key}" th:text="${entry.value}">Wybierz...</option>
+                            <select class="form-control box-shadow info_dropdown" name="competition" required>
+                                <option th:each="competition : ${competitionList}" th:value="${competition.id}" th:text="${competition.user.rider.name +' - '+ competition.user.rider.lastName}">Wybierz...</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-inverse"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspUsuń

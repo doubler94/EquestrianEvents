@@ -1,6 +1,8 @@
 package cavalli.config;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.*;
@@ -29,9 +31,13 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
     }
 
-//
-//    @Override
-//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer){
-//        configurer.enable();
-//    }
+    @Bean
+    public MessageSource messageSource() {
+        final ReloadableResourceBundleMessageSource ret = new ReloadableResourceBundleMessageSource();
+        ret.setBasename("classpath:message");
+        ret.setDefaultEncoding("UTF-8");
+        ret.setUseCodeAsDefaultMessage(true);
+
+        return ret;
+    }
 }

@@ -3,17 +3,17 @@ package cavalli.entity.Rider;
 import cavalli.entity.User.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Ola on 05.11.2016.
  */
 @Entity
 @Table(name = "Rider")
-public class Rider {
+public class Rider implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @JoinColumn(name = "User", referencedColumnName = "Id")
     private Integer id;
 
     @Column(name = "Name")
@@ -30,10 +30,6 @@ public class Rider {
 
     @Column(name = "License")
     private String license;
-
-    @JoinColumn(name = "UserId")
-    @OneToOne
-    private User user;
 
     public Integer getId() {
         return id;
@@ -81,13 +77,5 @@ public class Rider {
 
     public void setLicense(String license) {
         this.license = license;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

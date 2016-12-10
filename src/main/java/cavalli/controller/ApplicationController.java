@@ -84,12 +84,9 @@ public class ApplicationController {
     @Transactional
     public String registerUser(@ModelAttribute Rider rider, @ModelAttribute User user) {
         user.setRole("ROLE_ADMIN");
-        String password = user.getPassword();
-        String hashedPassword = passwordEncoder.encode(password);
-        user.setPassword(hashedPassword);
-
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.create(user);
-        rider.setUser(user);
+        rider.setId(user.getId());
         riderService.create(rider);
         return "redirect:" + AppUrls.LOGIN;
     }

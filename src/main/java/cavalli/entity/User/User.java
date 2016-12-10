@@ -1,5 +1,7 @@
 package cavalli.entity.User;
 
+import cavalli.entity.Rider.Rider;
+
 import javax.persistence.*;
 
 /**
@@ -22,6 +24,14 @@ public class User {
 
     @Column(name = "Role")
     private String role;
+
+    @OneToOne
+    @JoinColumn(name = "Id")
+    public Rider rider;
+
+//    @OneToOne
+//    @JoinColumn(name = "Id")
+//    public Organizer organizer;
 
     public Integer getId() {
         return id;
@@ -53,6 +63,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Rider getRider() {
+        return rider;
+    }
+
+    public void setRider(Rider rider) {
+        this.rider = rider;
     }
 
     @Override

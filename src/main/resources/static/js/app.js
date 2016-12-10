@@ -161,7 +161,8 @@ function competitionValidate(value) {
     var ground = $("#ground").val();
     var price = $("#price").val();
 
-    var regLetter = /^[a-zA-ZĄĆĘŁŃÓŚŻŹąćęłńóśżź]{1,50}$/;
+    //var regLetter = /^[a-zA-ZĄĆĘŁŃÓŚŻŹąćęłńóśżź]{1,50}$/;
+    var regLetter = /^[A-Z][a-zA-Z']+[ ]+[A-Z][a-zA-Z'\- ]*$/;
     var regNumber = /^\d{1,3}$/;
     var regSize = /^\d{2,3}x\d{2,3}$/;
 

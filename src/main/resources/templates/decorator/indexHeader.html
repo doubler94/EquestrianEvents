@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.springframework.org/tags" lang="en">
 
 <body>
 
@@ -14,6 +14,21 @@
     </div>
 </div>
 
+<div th:fragment="message">
+    <div th:if="${success != null}">
+    <div class="alert alert-success" role="alert" style="margin: 60px 0px -115px 0px;">
+        <span class="sr-only"><spring:message code="success"/>:</span>
+        <span th:text="${success}" th:remove="tag">success</span>
+    </div>
+    </div>
+    <div th:if="${error != null}">
+        <div class="alert alert-danger" role="alert" style="margin: 60px 0px -115px 0px;">
+            <span class="sr-only"><spring:message code="error"/>:</span>
+            <span th:text="${error}" th:remove="tag">error</span>
+        </div>
+    </div>
+</div>
+
 <div th:fragment="header">
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
         <div class="container">
@@ -24,23 +39,23 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" th:href="${T(cavalli.url.AppUrls).APP}"><img th:src="@{/img/logo.png}"
-                                                                                    src="../../static/img/logo.png"
-                                                                                    class="logo"/></a>
+                                                                                     src="../../static/img/logo.png"
+                                                                                     class="logo"/></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a class="menu" th:href="${T(cavalli.url.AppUrls).APP_COMPETITION}"><i class="fa fa-trophy"
-                                                                                              aria-hidden="true"></i>&nbspZawody</a>
+                                                                                               aria-hidden="true"></i>&nbspZawody</a>
                     </li>
                     <li><a class="menu" th:href="${T(cavalli.url.AppUrls).APP_START_LIST}"><i class="fa fa-bell-o"
-                                                                                             aria-hidden="true"></i>&nbspListy
+                                                                                              aria-hidden="true"></i>&nbspListy
                         startowe</a>
                     </li>
                     <li><a class="menu" th:href="${T(cavalli.url.AppUrls).APP_RESULT}"><i class="fa fa-file-text-o"
-                                                                                         aria-hidden="true"></i>&nbspWyniki</a>
+                                                                                          aria-hidden="true"></i>&nbspWyniki</a>
                     </li>
                     <li><a class="menu" th:href="${T(cavalli.url.AppUrls).LOGIN}"><i class="fa fa-lock"
-                                                                                    aria-hidden="true"></i>&nbspLogowanie</a>
+                                                                                     aria-hidden="true"></i>&nbspLogowanie</a>
                     </li>
                 </ul>
                 <form class="navbar-form navbar-right" role="search">

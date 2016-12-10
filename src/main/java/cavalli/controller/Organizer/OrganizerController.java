@@ -2,11 +2,13 @@ package cavalli.controller.Organizer;
 
 import cavalli.entity.Competition.Competition;
 import cavalli.entity.User.User;
+import cavalli.exception.Competition.CompetitionNotFoundException;
 import cavalli.service.Competition.CompetitionService;
 import cavalli.service.User.UserService;
 import cavalli.url.Organizer.OrganizerUrls;
 import cavalli.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -36,6 +39,11 @@ public class OrganizerController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    MessageSource messageSource;
+
+    private String[] args = {};
 
     UserUtils userUtils = new UserUtils();
 
@@ -55,17 +63,8 @@ public class OrganizerController {
 
     @RequestMapping(value = OrganizerUrls.ORGANIZER_COMPETITIONDELETE, method = RequestMethod.GET)
     public String viewCompetitionDelete(@ModelAttribute Competition competition, ModelMap model) {
-        Map<Integer, Competition> map = new HashMap<Integer, Competition>();
-        List<Competition> competitions = competitionService.findAll();
-        for (Competition compe : competitions )
-        {
-            System.out.println(compe);
-//            String name = competition.getUser().getLogin() +", "+ competition.getStartDate() + " - " + competition.getStopDate();
-            map.put(competition.getId(), compe);
-            System.out.println(map.size());
-        }
 
-        model.addAttribute("competitionList", map);
+        model.addAttribute("competitionList", competitionService.findAll());
 
         return viewPath + "competitionDelete";
     }
@@ -96,6 +95,17 @@ public class OrganizerController {
         User user = userService.findBylogin(userUtils.getPrincipal());
         competition.setUser(user);
         competitionService.create(competition);
+        return "redirect:" + OrganizerUrls.ORGANIZER;
+    }
+
+    @RequestMapping(value = OrganizerUrls.ORGANIZER_COMPETITION_DELETE, method = POST)
+    public String deleteCompetition(@ModelAttribute("competition") Competition competition, RedirectAttributes attributes, Locale locale) throws CompetitionNotFoundException {
+        competitionService.delete(competition.getId());
+        Competition comp = competitionService.findById(competition.getId());
+        if(comp==null)
+            attributes.addFlashAttribute("success", messageSource.getMessage("competition.delete.success", args, locale));
+        else
+            attributes.addFlashAttribute("error", messageSource.getMessage("competition.delete.error", args, locale));
         return "redirect:" + OrganizerUrls.ORGANIZER;
     }
 
